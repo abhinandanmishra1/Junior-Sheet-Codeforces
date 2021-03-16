@@ -52,7 +52,48 @@ const int mx=1e5+7;
 
 int main(){
 
-
+    ll n;
+    cin>>n;
+    ll arr[n];
+    for(ll i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    ll start=-1,end=-1;
+    for(ll i=0;i<n-1;i++){
+        if(arr[i]>arr[i+1]){
+            start=i;
+            break;
+        }
+    }
+    for(ll i=n-1;i>0;i--){
+        if(arr[i]<arr[i-1]){
+            end=i;
+            break;
+        }
+    }
+    if(start==-1 || end==-1){
+        cout<<"yes\n1 1";
+        return 0;
+    }
+    // cout<<start<<" "<<end<<endl;
+    for(ll i=start;i<=(end+1)/2;i++){
+        swap(arr[i],arr[end-i+1]);
+    }
+    bool flag=true;
+    for(ll i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+        if(i!=n-1 && arr[i]>arr[i+1]){
+            flag=false;
+        
+        }
+    }
+    if(flag){
+        cout<<"yes\n";
+        cout<<start+1<<" "<<end+1;
+        
+    }else{
+        cout<<"no";
+    }
     return 0;
 
 }
